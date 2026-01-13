@@ -1,17 +1,17 @@
 const express = require('express');
-const connectDB = require('./config/db'); // We will create this next
+const connectDB = require('./config/db');
 const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
-// Init Middleware
+connectDB();
+
 app.use(cors());
 app.use(express.json());
 
-// Define Routes
 app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/reservations', require('./routes/reservations')); // We'll build this next
+app.use('/api/reservations', require('./routes/reservations'));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server started on port ${PORT}`));
