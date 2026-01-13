@@ -26,6 +26,8 @@ The application features a custom algorithm to optimize restaurant seating:
 ## ⚙️ Local Setup Instructions
 1. Clone the repository.
 2. Navigate to `/server`, create a `.env` file with `MONGO_URI`, `PORT`, and `JWT_SECRET`.
-3. Run `npm install` in both `/server` and `/client` directories.
+3. Run `npm install` in bot<img width="1920" height="1020" alt="React App - Brave 13-01-2026 11_49_35 AM" src="https://github.com/user-attachments/assets/e24a0ce4-6ead-4eb2-95b1-c1a6a218fe6b" />
+h `/server` and `/client` directories.
 4. Run `node seed.js` in the server folder to initialize the restaurant table layout.
 5. Launch the app: `npm start` (Frontend) and `nodemon server.js` (Backend).
+<img width="1897" height="876" alt="Screenshot 2026-01-13 115425" src="https://github.com/user-attachments/assets/47ee58f4-7f10-4252-9945-f9bb7bc219ce" />
