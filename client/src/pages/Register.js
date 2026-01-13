@@ -9,7 +9,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
+      await axios.post('https://restaurant-reservation-api-xbb2.onrender.com/api/auth/register', formData);
       alert('Registration Successful! Please Login.');
       navigate('/');
     } catch (err) {
@@ -18,16 +18,16 @@ const Register = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="page-container">
       <h2>Create Account</h2>
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="Name" onChange={e => setFormData({...formData, name: e.target.value})} required /><br/>
-        <input type="email" placeholder="Email" onChange={e => setFormData({...formData, email: e.target.value})} required /><br/>
-        <input type="password" placeholder="Password" onChange={e => setFormData({...formData, password: e.target.value})} required /><br/>
+        <input type="text" placeholder="Name" onChange={e => setFormData({...formData, name: e.target.value})} required />
+        <input type="email" placeholder="Email" onChange={e => setFormData({...formData, email: e.target.value})} required />
+        <input type="password" placeholder="Password" onChange={e => setFormData({...formData, password: e.target.value})} required />
         <select onChange={e => setFormData({...formData, role: e.target.value})}>
           <option value="customer">Customer</option>
           <option value="admin">Administrator</option>
-        </select><br/>
+        </select>
         <button type="submit">Register</button>
       </form>
     </div>

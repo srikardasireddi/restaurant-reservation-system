@@ -4,11 +4,7 @@ import axios from 'axios';
 const Dashboard = () => {
   const [role, setRole] = useState('');
   const [reservations, setReservations] = useState([]);
-  const [formData, setFormData] = useState({
-    reservationDate: '',
-    timeSlot: '',
-    guests: 1
-  });
+  const [formData, setFormData] = useState({ reservationDate: '', timeSlot: '', guests: 1 });
 
   useEffect(() => {
     setRole(localStorage.getItem('role'));
@@ -18,7 +14,7 @@ const Dashboard = () => {
   const fetchReservations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/reservations', {
+      const res = await axios.get('https://restaurant-reservation-api-xbb2.onrender.com/api/reservations', {
         headers: { 'x-auth-token': token }
       });
       setReservations(res.data);
@@ -31,22 +27,21 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/reservations', formData, {
+      await axios.post('https://restaurant-reservation-api-xbb2.onrender.com/api/reservations', formData, {
         headers: { 'x-auth-token': token }
       });
       alert("Reservation Successful!");
-      fetchReservations(); // Refresh the list
+      fetchReservations();
     } catch (err) {
       alert(err.response?.data?.msg || "Booking failed");
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="page-container">
       <h1>{role === 'admin' ? 'Admin Panel' : 'Customer Dashboard'}</h1>
-      
       {role === 'customer' && (
-        <div style={{ border: '1px solid #ccc', padding: '15px', marginBottom: '20px' }}>
+        <div className="booking-section">
           <h3>Book a Table</h3>
           <form onSubmit={handleBooking}>
             <input type="date" onChange={e => setFormData({...formData, reservationDate: e.target.value})} required />
@@ -62,9 +57,8 @@ const Dashboard = () => {
           </form>
         </div>
       )}
-
       <h3>{role === 'admin' ? 'All Bookings' : 'My Reservations'}</h3>
-      <table border="1" cellPadding="10" style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <table>
         <thead>
           <tr>
             <th>Date</th>
